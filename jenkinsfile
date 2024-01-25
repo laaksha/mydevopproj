@@ -1,36 +1,55 @@
 
 pipeline {
-    agent any {
-	stages {
+    agent any
+
+    environment {
+        // Define environment variables if needed
+    }
+
+    stages {
         stage('Checkout') {
-           
+            steps {
+                script {
+                    // Checkout the source code from version control
+                    checkout scm
+                }
+            }
         }
 
         stage('Build') {
-            
+            steps {
+                // Build your application
+                // Example: sh 'mvn clean install'
+            }
         }
 
         stage('Test') {
-           
+            steps {
+                // Run your tests
+                // Example: sh 'mvn test'
+            }
         }
 
-        stage('Quality Gates') {
-            
-        }
-
-        stage('Sonar Qube') {
-            
-        }
-
-	stage('Push Artifacts') {
-
-        }
-
-	Stage('Deploy') {
-
+        stage('Deploy') {
+            when {
+                // Deploy on develop, master, or release branches
+                expression { env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release/') }
+            }
+            steps {
+                // Deploy your application
+                // Example: sh 'scp target/app.war user@deploy-server:/path/to/deploy'
+            }
         }
     }
-}
+
+    post {
+        success {
+            // Actions to perform on success (e.g., send notifications)
+        }
+        failure {
+            // Actions to perform on failure (e.g., send notifications, rollback)
+        }
+    }
 }
 
 
