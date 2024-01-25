@@ -1,55 +1,26 @@
-
 pipeline {
     agent any
 
-    environment {
-        // Define environment variables if needed
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Checkout the source code from version control
-                    checkout scm
-                }
-            }
-        }
-
         stage('Build') {
             steps {
-                // Build your application
-                // Example: sh 'mvn clean install'
+                echo 'Building...'
+                // Add your build steps here
             }
         }
-
         stage('Test') {
             steps {
-                // Run your tests
-                // Example: sh 'mvn test'
+                echo 'Testing...'
+                // Add your test steps here
             }
         }
-
         stage('Deploy') {
-            when {
-                // Deploy on develop, master, or release branches
-                expression { env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release/') }
-            }
             steps {
-                // Deploy your application
-                // Example: sh 'scp target/app.war user@deploy-server:/path/to/deploy'
+                echo 'Deploying...'
+                // Add your deployment steps here
             }
         }
     }
-
-    post {
-        success {
-            // Actions to perform on success (e.g., send notifications)
-        }
-        failure {
-            // Actions to perform on failure (e.g., send notifications, rollback)
-        }
-    }
 }
 
 
