@@ -1,7 +1,7 @@
 
 pipeline {
     agent any {
-		stages {
+	stages {
         stage('Checkout') {
            
         }
@@ -22,11 +22,11 @@ pipeline {
             
         }
 
-		stage('Push Artifacts') {
+	stage('Push Artifacts') {
 
         }
 
-		Stage('Deploy') {
+	Stage('Deploy') {
 
         }
     }
