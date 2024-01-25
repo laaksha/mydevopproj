@@ -1,1 +1,33 @@
-hi jenkins
+pipeline {
+    agent any {
+		stages {
+        stage('Checkout') {
+           
+        }
+
+        stage('Build') {
+            
+        }
+
+        stage('Test') {
+           
+        }
+
+        stage('Quality Gates') {
+            
+        }
+
+        stage('Sonar Qube') {
+            
+        }
+
+		stage('Push Artifacts') {
+
+        }
+
+		Stage('Deploy') {
+
+        }
+    }
+}
+}
